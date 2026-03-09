@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Card from "../components/Card";
 
-export default function Index() {
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mon App</Text>
+      <Card title="Apprendre React" isFinished={true} />
+      <Card title="Apprendre React Native" isFinished={false} />
+      <Card title="Apprendre l'AIDD" isFinished={false} />
+      <Card title="Apprendre l'Anglais" isFinished={true} />
+      <Card title="Apprendre le Japonais" isFinished={false} />
     </View>
   );
 }
@@ -11,13 +16,9 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
+    backgroundColor: "#CCC",
+    padding: 8,
+    gap: 20,
   },
 });
