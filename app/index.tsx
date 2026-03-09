@@ -1,14 +1,14 @@
 import { StyleSheet, View } from "react-native";
-import Card from "../components/Card";
+import TodoCard from "../components/TodoCard";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Card title="Apprendre React" isFinished={true} />
-      <Card title="Apprendre React Native" isFinished={false} />
-      <Card title="Apprendre l'AIDD" isFinished={false} />
-      <Card title="Apprendre l'Anglais" isFinished={true} />
-      <Card title="Apprendre le Japonais" isFinished={false} />
+      <TodoCard title="Apprendre React" completed={true} />
+      <TodoCard title="Apprendre React Native" />
+      <TodoCard title="Apprendre l'AIDD" />
+      <TodoCard title="Apprendre l'Anglais" completed={true} />
+      <TodoCard title="Apprendre le Japonais" />
     </View>
   );
 }
