@@ -1,24 +1,5 @@
-import { StyleSheet, View } from "react-native";
-import TodoCard from "../components/TodoCard";
+import { Redirect } from "expo-router";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <TodoCard title="Apprendre React" completed={true} />
-      <TodoCard title="Apprendre React Native" />
-      <TodoCard title="Apprendre l'AIDD" />
-      <TodoCard title="Apprendre l'Anglais" completed={true} />
-      <TodoCard title="Apprendre le Japonais" />
-    </View>
-  );
+export default function RootIndex() {
+  return <Redirect href="/(tabs)/list" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#CCC",
-    padding: 8,
-    gap: 20,
-  },
-});
