@@ -1,23 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Redirect } from "expo-router";
 
-export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Mon App</Text>
-    </View>
-  );
+export default function RootIndex() {
+  return <Redirect href="/(tabs)/list" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-  },
-});
