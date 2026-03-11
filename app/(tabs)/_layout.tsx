@@ -7,9 +7,9 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="list"
         options={{
-          title: "TODO-list",
+          title: "TODO",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="home" color={color} />
+            <FontAwesome size={28} name="list" color={color} />
           ),
         }}
       />
