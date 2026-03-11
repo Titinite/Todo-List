@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface TodoCardProps {
+  id?: number;
   title: string;
   completed?: boolean;
 }
 
-export default function TodoCard({ title, completed }: TodoCardProps) {
-  const [isCompleted, setIsCompleted] = useState(completed);
+export default function TodoCard({ id, title, completed }: TodoCardProps) {
+  const router = useRouter();
   return (
-    <Pressable onPress={() => setIsCompleted(!isCompleted)}>
-      <View
-        style={[
-          styles.container,
-          isCompleted ? styles.containerCompleted : undefined,
-        ]}
-      >
+    <Pressable onPress={() => router.navigate(`/list/detail/${id}`)}>
+      <View style={[styles.card, completed ? styles.cardDone : undefined]}>
         <Text
           style={[
-            styles.title,
-            isCompleted ? styles.titleCompleted : undefined,
+            styles.paragraph,
+            completed ? styles.paragraphDone : undefined,
           ]}
         >
           {title}
         </Text>
-        <Text style={styles.paragraph}>{isCompleted ? "Fait" : "A faire"}</Text>
+        <Text>{completed ? "Fait" : "A faire"}</Text>
       </View>
     </Pressable>
   );
@@ -32,30 +28,27 @@ export default function TodoCard({ title, completed }: TodoCardProps) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    padding: 25,
-    borderRadius: 25,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    padding: 8,
+    gap: 32,
   },
-  containerCompleted: {
-    backgroundColor: "#fff5",
+  card: {
+    backgroundColor: "#FFF",
+    borderRadius: 16,
+    padding: 24,
+    gap: 16,
   },
-  title: {
-    marginBottom: 24,
+  paragraph: {
     fontSize: 18,
     fontWeight: "bold",
   },
-  titleCompleted: {
+  cardDone: {
+    opacity: 0.6,
+  },
+  paragraphDone: {
     textDecorationLine: "line-through",
     fontStyle: "italic",
-  },
-  paragraph: {
-    fontSize: 14,
-    fontWeight: "500",
   },
 });
