@@ -1,10 +1,9 @@
 import { createContext, FC, PropsWithChildren, useState } from "react";
-
-interface Todo {
-  id?: number;
-  title: string;
-  completed: boolean;
-}
+import {
+  createTodosOnDummyJson,
+  getTodosOnDummyJson,
+  Todo,
+} from "../api/dummyJsonApi";
 
 interface TodoContextProps {
   todos: Todo[];
@@ -20,20 +19,30 @@ export const TodoContext = createContext<TodoContextProps>({
 
 export const TodoProvider: FC<PropsWithChildren> = ({ children }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+
   const getTodos = async () => {
-    setTodos([
-      { id: 1, title: "Apprendre React", completed: true },
-      { id: 2, title: "Apprendre React Native", completed: false },
-    ]);
+    const apiTodos = await getTodosOnDummyJson();
+    if (apiTodos === null) {
+      // dddd
+    } else {
+      setTodos(apiTodos.todos);
+    }
   };
+
   const addTodo = async (title: string) => {
-    const newTodo: Todo = {
-      id: Math.max(...todos.map((t) => t.id || 0)) + 1,
-      title,
+    const apiCreateTodo = await createTodosOnDummyJson({
+      id: todos.length + 1,
+      todo: title,
       completed: false,
-    };
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+      userId: 1,
+    });
+    if (apiCreateTodo === null) {
+      // dddd
+    } else {
+      setTodos([...todos, apiCreateTodo]);
+    }
   };
+
   return (
     <TodoContext.Provider value={{ todos, getTodos, addTodo }}>
       {children}
