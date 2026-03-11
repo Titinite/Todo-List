@@ -1,7 +1,7 @@
 import { TodoContext } from "@/data/context/TodoContext";
 import { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
-import TodoCard from "../TodoCard";
+import TodoCard from "../common/TodoCard";
 
 export default function TodoList() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function TodoList() {
         todos.map((todo) => (
           <TodoCard
             id={todo.id}
-            title={todo.title}
+            title={todo.todo}
             completed={todo.completed}
             key={todo.id}
           />
@@ -34,10 +34,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    flex: 1,
     justifyContent: "flex-start",
     backgroundColor: "#ecf0f1",
     padding: 8,
-    gap: 32,
+    gap: 16,
   },
 });
